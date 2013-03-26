@@ -1,0 +1,156 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+<title>WordReference API</title>
+<META NAME='ROBOTS' CONTENT='NOINDEX'>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<style type="text/css">
+/*html,body {font-family: arial, verdana, sans-serif; font-size: 12px;margin-top:0px; margin-bottom:0px; height:100%;}*/
+html,body {font-family: arial, verdana, sans-serif; font-size: 12px; margin:0px; height:100%;}
+table.Rtbl {border: solid 1px white; line-height:16px; border-collapse:collapse;}
+div#Otbl {padding: 0px;}
+span.EsIPA { font-family:"Lucida Sans Unicode", "Arial Unicode MS","Lucida Grande"; color: blue; font-size: 10pt; }
+.small1 {font-size: x-small}
+tr.even	{background-color: #e8e8ff;vertical-align: top}
+tr.odd	{background-color: white;vertical-align: top}
+tr.evenEx {background-color: #e8e8ff;vertical-align: top}
+tr.oddEx  {background-color: white;vertical-align: top}
+td.Head	{padding-left:0px; padding-right: 10px; font-weight: bold; font-size:13px; text-decoration:underline; line-height:30px}
+
+#si {width:90%;max-width:180px;}
+#dictselect {font-size:11px;width:130px;}
+
+#Rtbl2		{position:absolute; right: 0px; top:278px; width:400px; border: solid 1px black;}
+table.Rtbl2	{line-height:16px; border-collapse:collapse;}
+/* .FrW2		{padding-left:5px;font-weight: bold;}
+*/
+.FrW2		{padding-left:1px;font-weight: bold;}
+.To2		{text-indent: 50px;font-style: italic}
+/* .FrCN2, td.ToW22, td.POS2	{padding-left:5px;}
+*/
+.FrCN2, td.ToW22, td.POS2	{padding-left:1px;font-size:11px;}
+.ToCN2	{padding-left:20px; font-style: italic}
+.ToW2	{padding-left:5px; padding-right: 5px}
+.Ex2, td.ToEx2	{padding-left: 5px; padding-right:5px; color:SlateGray;}
+.FrEx2	{padding-left: 5px; padding-right:5px; color:#483D8B;}
+.ToNt2	{padding-left: 5px; padding-right:5px; color:red;}
+span.POS2	{padding-left:2px;}
+.POS2		{color:#524BD3; font-style: italic;}
+tr.evenExHide, tr.oddExHide {display:none}
+
+
+
+/*
+.FrW2		{padding-left:5px;font-weight: bold;}
+.FrCN2 {padding-left:15px;}
+
+#si {width:90%;max-width:180px;}
+#dictselect {font-size:11px;width:130px;}
+
+
+
+#Rtbl2		{position:absolute; right: 0px; top:278px; width:400px; border: solid 1px black;}
+table.Rtbl2	{border: solid 1px white; line-height:16px; border-collapse:collapse;}
+td.FrW2		{padding-left:5px;font-weight: bold;}
+td.To2		{text-indent: 50px;font-style: italic}
+td.FrCN2, td.ToW22, td.POS2	{padding-left:5px;}
+td.ToCN2	{padding-left:20px; font-style: italic}
+td.ToW2	{padding-left:5px; padding-right: 5px}
+td.Ex2, td.ToEx2	{padding-left: 5px; padding-right:5px; color:SlateGray;}
+td.FrEx2	{padding-left: 5px; padding-right:5px; color:#483D8B;}
+td.ToNt2	{padding-left: 5px; padding-right:5px; color:red;}
+span.POS2	{padding-left:2px;}
+.POS2		{color:#524BD3; font-style: italic;}
+tr.evenExHide, tr.oddExHide {display:none}
+*/
+
+
+.thumbs{display:none;}
+ul, li{	list-style-type: none;}
+.liSense {margin-left: -40px;}
+/*span.syno:hover{text-decoration:underline}*/
+a img{text-decoration:none;border:none;}
+div.tags{display:inline;width:50%;float:right;font-style:italic;}
+.clickable ul{padding-top:0px;margin-top:0px;}
+.clickable ul li.liSense ul li.synonym{display:inline-block;font-size:14px;}
+.clickable ul li.synonym{display:inline-block;font-size:14px;}
+.tags{color:gray}  
+.clickable ul li.synonym:after{content:',\00a0';}
+.clickable ul li.last:after{content:'';}
+.reseta {font-weight:bold;}
+.inps{font-size:12px;border:solid 1px gray; background-color:#e0e0e0;padding-bottom:5px;}
+.inps label{font-weight:bold;}
+.inps input{-moz-border-radius: 5px; border-radius: 5px; width:300px;}
+.addterm{margin-top:5px;}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-187118-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div style="max-width:300px">
+<div style="font-weight:bold;font-size:15px;border-bottom: solid black 1px; border-top: solid black 1px; min-height:20px; background-color:#5E58C7;color:#FFFFFF; text-align:center">WordReference.com Dictionaries
+</div>
+
+<div style="border-bottom: solid black 1px; background-color:#918CE3; padding:2px; text-align:center;">
+
+<form method="GET" action="http://api.wordreference.com/index.aspx" class=lookup name="sbox" target="_self">
+	<input type="hidden" name="u" value="de96c">
+	<input type="text" name="w" id="si" maxlength="30" tabindex="1" onKeyDown="keyDown(event)" accesskey="s" title="Alt-(Shift)-S" value=""> 
+	<select size="1" name="dict" tabindex="2" id="dictselect">
+
+	<option value="thesaurus">English thesaurus</option>
+	<optgroup label="More Dictionaries" style="font-size:8pt">
+<!--		<option value="enes">English&lt;-&gt;Spanish</option> -->
+		<option value="enfr">English&lt;-&gt;French</option>
+		<option value="enit">English&lt;-&gt;Italian</option>
+		<option value="enpt">English&lt;-&gt;Portuguese</option>
+<!--		<option value="ende">English&lt;-&gt;German</option> -->
+
+<!--		<option value="enru">English&lt;-&gt;Russian</option> -->
+		<option value="enpl">English&lt;-&gt;Polish</option>
+		<option value="enro">English&lt;-&gt;Romanian</option>
+		<option value="engr">English&lt;-&gt;Greek</option>
+		<option value="enzh">English&lt;-&gt;Chinese</option>
+		<option value="enja">English&lt;-&gt;Japanese</option>
+		<option value="enko">English&lt;-&gt;Korean</option>
+		<option value="encz">English&lt;-&gt;Czech</option>
+		<option value="entr">English&lt;-&gt;Turkish</option>
+		<option value="enar">English&lt;-&gt;Arabic</option>
+	</optgroup>
+
+	</select><input type="submit" value="Go" name="B" title="Look Up" tabindex="3" style="padding:0px">
+</form>
+
+</div>
+<br><span class="small1">WordReference English Thesaurus &copy; 2013</span><br><u><b>house</b></u><div class='clickable' onclick='redirectWR(event,"WRthesaurus")'><ul><li class="liSense"><b class="synsense"><a name='14106'></a><i>Sense:</i> A habitation</b><ul><li id='li0' class='synonym first'><span id="syn190490" class="syno" title="">home</span></li><li id='li1' class='synonym'><span id="syn190491" class="syno" title="">dwelling</span></li><li id='li2' class='synonym last'><span id="syn190492" class="syno" title="">residence</span></li></ul><br></li><li class="liSense"><b class="synsense"><a name='14107'></a><i>Sense:</i> A large business establishment</b><ul><li id='li3' class='synonym first'><span id="syn190493" class="syno" title="">organization</span></li><li id='li4' class='synonym'><span id="syn190494" class="syno" title="">firm</span></li><li id='li5' class='synonym last'><span id="syn190495" class="syno" title="">company</span></li></ul><br></li><li class="liSense"><b class="synsense"><a name='14108'></a><i>Sense:</i> A family</b><ul><li id='li6' class='synonym first'><span id="syn190496" class="syno" title="">line</span></li><li id='li7' class='synonym last'><span id="syn190497" class="syno" title="">family</span></li></ul><br></li><li class="liSense"><b class="synsense"><a name='14109'></a><i>Sense:</i> A legislative body</b><ul><li id='li8' class='synonym first'><span id="syn190498" class="syno" title="">congress</span></li><li id='li9' class='synonym last'><span id="syn190499" class="syno" title="">parliament</span></li></ul></li></ul></div><span id='emptyspa'></span></ul></div><span id='emptyspa'></span></ul></div><span id='emptyspa'></span></ul></div><span id='emptyspa'></span></ul></div><span id='emptyspa'></span></ul></div><span id='emptyspa'></span></ul></div><span id='emptyspa'></span></ul></div><span id='emptyspa'></span></ul></div><span id='emptyspa'></span>
+</div>
+<script type="text/javascript">
+
+function redirectWR() {return;}
+function dr4sdgryt3(e,dict){return;}
+
+function keyDown(k)
+{var keycode=document.all?event.keyCode:k.which;if(document.getElementById('si')&&document.getElementById('si').value.length===0)
+{if((""+keycode)=="33"){document.getElementById('si').blur();}
+if((""+keycode)=="34"){document.getElementById('si').blur();}
+if((""+keycode)=="35"){document.getElementById('si').blur();}
+if((""+keycode)=="36"){document.getElementById('si').blur();}
+if((""+keycode)=="38"){document.getElementById('si').blur();}
+if((""+keycode)=="40"){document.getElementById('si').blur();}}}
+
+</script>
+</body>
+</html>
