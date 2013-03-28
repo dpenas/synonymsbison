@@ -4,6 +4,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+char synonyms[100][100];
+int number_synonyms = 0;
+
 char* create_url(char* word){
 	char* wordrefurl = "http://api.wordreference.com/";
 	char* apikey = "de96c/";
@@ -33,6 +36,18 @@ void yyerror (char *s) {
 	printf("%s\n", s);
 }
 
+void insertsynonyms(char* synonym){
+	strcpy(synonyms[number_synonyms], synonym);
+	number_synonyms++;
+}
+
+void printsynonyms(){
+	int i;
+	for (i = 0; i < number_synonyms; i++){
+		printf("%s", synonyms[i]);
+	}
+}
+
 %}
 
 
@@ -53,15 +68,16 @@ initial_part: INTRO PRINCIPAL senses {};
 senses: SENSE SENSE WORDSENSE senses {printf("HOLA1\n");}
       | SENSE SENSE WORDSENSE synonyms {printf("HOLA2\n");}
 
-synonyms: SYNONYM synonyms {printf("HOLA3\n");}
-	| SYNONYM senses {printf("HOLA4\n");}
-	| SYNONYM {printf("HOLA5\n");}
+synonyms: synonyms SYNONYM {printf("HOLA3\n"); insertsynonyms($2);}
+	| SYNONYM senses {printf("HOLA4\n"); insertsynonyms($1);}
+	| SYNONYM {printf("HOLA5\n"); insertsynonyms($1);}
 
 %%
 void main(){
-	char* url;
-	url = create_url("house");
-	download_url(url);
-	printf("Descargado HTML RESULT\n");
+	//char* url;
+	//url = create_url("house");
+	//download_url(url);
+	//printf("Descargado HTML RESULT\n");
 	yyparse();
+	printsynonyms();
 }
