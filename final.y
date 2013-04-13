@@ -1,11 +1,15 @@
 %{
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
 char synonyms[100][100];
 int number_synonyms = 0;
+char senses[100][100];
+int number_senses = 0;
+int eachsense[100];
+int wholedata[100];
+int number_eachsense = 0;
 
 char* create_url(char* word){
 	char* wordrefurl = "http://api.wordreference.com/";
@@ -39,12 +43,40 @@ void yyerror (char *s) {
 void insertsynonyms(char* synonym){
 	strcpy(synonyms[number_synonyms], synonym);
 	number_synonyms++;
+	number_eachsense++;
+}
+
+void insertsenses(char* sense){
+	strcpy(senses[number_senses], sense);
+	eachsense[number_senses] = number_eachsense;
+	number_eachsense = 0;
+	number_senses++;
+}
+
+void addwholedata(){
+	int i;
+	for (i = 1; i < number_senses; i++){
+		wholedata[i+1] = eachsense[i-1] + eachsense[i];
+	}
 }
 
 void printsynonyms(){
-	int i;
-	for (i = 0; i < number_synonyms; i++){
-		printf("%s", synonyms[i]);
+	int i, j;
+	addwholedata();
+	for (i = 0; i < number_senses; i++){
+		printf("\nSense: %s\n", senses[i]);
+		for (j = 0; j < eachsense[i]; j++){
+			if (i == 0){
+				printf("HOLA\n");
+				printf("%s ", synonyms[j]);
+			}else{
+				if (i == 1){
+					printf("%s ", synonyms[j + eachsense[i-1]]);
+				}else{	
+					printf("%s ", synonyms[j + wholedata[i]]);
+				}
+			}
+		}
 	}
 }
 
@@ -55,22 +87,24 @@ void printsynonyms(){
 	char* string;
 }
 
-%token <string> SENSE WORDSENSE SYNONYM PRINCIPAL INTRO
-%type <string> initial_part senses
+%token <string> SYNONYM SENSE
+%type <string> thesaurus synonyms senses
 %start S
 
 %%
 
-S: initial_part
+S: thesaurus
 
-initial_part: INTRO PRINCIPAL senses {};
+thesaurus: senses|synonyms {};
 
-senses: SENSE SENSE WORDSENSE senses {printf("HOLA1\n");}
-      | SENSE SENSE WORDSENSE synonyms {printf("HOLA2\n");}
+senses: synonyms SENSE {insertsenses($2);}
+      | SENSE {insertsenses($1);}
 
-synonyms: synonyms SYNONYM {printf("HOLA3\n"); insertsynonyms($2);}
-	| SYNONYM senses {printf("HOLA4\n"); insertsynonyms($1);}
-	| SYNONYM {printf("HOLA5\n"); insertsynonyms($1);}
+synonyms: synonyms SYNONYM {insertsynonyms($2);}
+	| senses SYNONYM {insertsynonyms($2);}
+	| senses SENSE {insertsenses($2);}
+	| SYNONYM {insertsynonyms($1);}
+
 
 %%
 void main(){
@@ -79,5 +113,6 @@ void main(){
 	//download_url(url);
 	//printf("Descargado HTML RESULT\n");
 	yyparse();
+	printf("IMPRIMIMOS\n");
 	printsynonyms();
 }
