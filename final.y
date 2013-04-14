@@ -63,11 +63,11 @@ void addwholedata(){
 void printsynonyms(){
 	int i, j;
 	addwholedata();
+	eachsense[0] = number_synonyms - eachsense[number_eachsense];
 	for (i = 0; i < number_senses; i++){
 		printf("\nSense: %s\n", senses[i]);
 		for (j = 0; j < eachsense[i]; j++){
 			if (i == 0){
-				printf("HOLA\n");
 				printf("%s ", synonyms[j]);
 			}else{
 				if (i == 1){
