@@ -1,5 +1,5 @@
 %{
-//#include "y.tab.h"
+#include "y.tab.h"
 #include <stdio.h>
 #include <stdlib.h>
 %}
@@ -32,9 +32,9 @@ title "title"
 %s _wanted
 %%
 
-<_syn>{word} {printf("\n-- Syn: %s\n", yytext); BEGIN(_wanted);}
+<_syn>{word} {printf("\n-- Syn: %s\n", yytext); yylval.string = yytext; BEGIN(_wanted); return SYNONYM;}
 
-<_sense>{word} {printf("\n|Sense: %s|\n", yytext); BEGIN(_wanted);}
+<_sense>{word} {printf("\n|Sense: %s|\n", yytext); yylval.string = yytext; BEGIN(_wanted); return SENSE;}
 
 <_wanted>{sense}{ci} {BEGIN (_sense);}
 <_wanted>{title}{something}">" {BEGIN(_syn);}
