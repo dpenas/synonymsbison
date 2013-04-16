@@ -95,7 +95,7 @@ synonyms: synonyms SYNONYM {inserteverything($2);}
 
 
 %%
-void main(){
+int main(){
 	//char* url;
 	//url = create_url("house");
 	//download_url(url);
