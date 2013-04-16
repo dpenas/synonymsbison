@@ -2,11 +2,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 char everything[100][100];
 int number_everything = 0;
 int senses[100];
 int number_senses = 0;
+FILE *file;
 
 char* create_url(char* word){
 	char* wordrefurl = "http://api.wordreference.com/";
@@ -53,16 +55,17 @@ void printsynonyms(){
 	int i, j, count;
 	count = 0;
 	for (i = 0; i < number_senses; i++){
-		printf("\nSense: %s\n", everything[count]);
+		fprintf(file, "\nSense: %s\n", everything[count]);
 		count++;
 		for (j = count; j < senses[i+1]; j++){
-			printf(" %s ", everything[j]);
+			fprintf(file, " %s ", everything[j]);
 			count++;
 		}
 	}
 	for (i = count; i < number_everything; i++){
-		printf(" %s ", everything[i]);
+		fprintf(file, " %s ", everything[i]);
 	}
+		fprintf(file, "\n");
 }
 
 %}
@@ -97,6 +100,7 @@ void main(){
 	//url = create_url("house");
 	//download_url(url);
 	//printf("Descargado HTML RESULT\n");
+	file = fopen("salida.txt","w");
 	yyparse();
 	printf("IMPRIMIMOS\n");
 	printsynonyms();
