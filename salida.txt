@@ -1,0 +1,274 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+<title>WordReference API</title>
+<META NAME='ROBOTS' CONTENT='NOINDEX'>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<style type="text/css">
+/*html,body {font-family: arial, verdana, sans-serif; font-size: 12px;margin-top:0px; margin-bottom:0px; height:100%;}*/
+html,body {font-family: arial, verdana, sans-serif; font-size: 12px; margin:0px; height:100%;}
+table.Rtbl {border: solid 1px white; line-height:16px; border-collapse:collapse;}
+div#Otbl {padding: 0px;}
+span.EsIPA { font-family:"Lucida Sans Unicode", "Arial Unicode MS","Lucida Grande"; color: blue; font-size: 10pt; }
+.small1 {font-size: x-small}
+tr.even	{background-color: #e8e8ff;vertical-align: top}
+tr.odd	{background-color: white;vertical-align: top}
+tr.evenEx {background-color: #e8e8ff;vertical-align: top}
+tr.oddEx  {background-color: white;vertical-align: top}
+td.Head	{padding-left:0px; padding-right: 10px; font-weight: bold; font-size:13px; text-decoration:underline; line-height:30px}
+
+#si {width:90%;max-width:180px;}
+#dictselect {font-size:11px;width:130px;}
+
+#Rtbl2		{position:absolute; right: 0px; top:278px; width:400px; border: solid 1px black;}
+table.Rtbl2	{line-height:16px; border-collapse:collapse;}
+/* .FrW2		{padding-left:5px;font-weight: bold;}
+*/
+.FrW2		{padding-left:1px;font-weight: bold;}
+.To2		{text-indent: 50px;font-style: italic}
+/* .FrCN2, td.ToW22, td.POS2	{padding-left:5px;}
+*/
+.FrCN2, td.ToW22, td.POS2	{padding-left:1px;font-size:11px;}
+.ToCN2	{padding-left:20px; font-style: italic}
+.ToW2	{padding-left:5px; padding-right: 5px}
+.Ex2, td.ToEx2	{padding-left: 5px; padding-right:5px; color:SlateGray;}
+.FrEx2	{padding-left: 5px; padding-right:5px; color:#483D8B;}
+.ToNt2	{padding-left: 5px; padding-right:5px; color:red;}
+span.POS2	{padding-left:2px;}
+.POS2		{color:#524BD3; font-style: italic;}
+tr.evenExHide, tr.oddExHide {display:none}
+
+
+
+/*
+.FrW2		{padding-left:5px;font-weight: bold;}
+.FrCN2 {padding-left:15px;}
+
+#si {width:90%;max-width:180px;}
+#dictselect {font-size:11px;width:130px;}
+
+
+
+#Rtbl2		{position:absolute; right: 0px; top:278px; width:400px; border: solid 1px black;}
+table.Rtbl2	{border: solid 1px white; line-height:16px; border-collapse:collapse;}
+td.FrW2		{padding-left:5px;font-weight: bold;}
+td.To2		{text-indent: 50px;font-style: italic}
+td.FrCN2, td.ToW22, td.POS2	{padding-left:5px;}
+td.ToCN2	{padding-left:20px; font-style: italic}
+td.ToW2	{padding-left:5px; padding-right: 5px}
+td.Ex2, td.ToEx2	{padding-left: 5px; padding-right:5px; color:SlateGray;}
+td.FrEx2	{padding-left: 5px; padding-right:5px; color:#483D8B;}
+td.ToNt2	{padding-left: 5px; padding-right:5px; color:red;}
+span.POS2	{padding-left:2px;}
+.POS2		{color:#524BD3; font-style: italic;}
+tr.evenExHide, tr.oddExHide {display:none}
+*/
+
+
+td.nums1	{font-weight:bold;color:#5E58C7; vertical-align:top;text-align:right}
+td.roman1	{font-weight:bold;color:#5E58C7; vertical-align:top;font-size:16px;}
+span.roman1	{font-weight:bold;color:#5E58C7; vertical-align:bottom;}
+span.b	{font-weight:bold;}
+span.i, .bl	{color:#003399;}
+span.r	{color:red;}
+span.ic	{font-style:italic;color:#003399;}
+span.supr1	{vertical-align:super;color:#003399;}
+span.ac	{font-variant:small-caps;color:red;font-weight:bold;}
+div.trans	{padding:0px}
+ol.entry li	{margin-top:5px;}
+ol {padding-left:13px;}
+.hm, .su, .hom, .APICE, .sup, .tab
+		{vertical-align: super; font-size:10px}
+.sub	{vertical-align: sub; font-size:8px}
+.hide 	{display:none}
+.abb, .cfrf, .con, .contr, .cvf, .divar, .ell, .ex, .exp, .exs, .fem, .fm, .frm, .hcvf, .dex,
+.hcw, .idx, .inf, .mex, .mod, .nh, .prv, .pvb, .pvbv, .sig, .var, .x, .xi, .xrru,
+.cw, .phw, .stxt, .cmp, .dex, .femv, .frmv, .vcp, .prvx, .idm, .cv, .cx, /* xg added from compare (where?), xr removed for deC; itenP xr, not xg */
+.ef, .fs, .lc, .le, .li, .lo, .lp, .ls, .lu, .lv, .sb, .sl, .sp, .v, .vs, .G, .G2, .VF, .CG, .lemma, .fordiv, .cv, .nv,
+.f, .h2, .rb, .rbi, .pg, .bp, .pvv  /* pv removed for it, since pv not allowed, pg added for de */
+		{font-weight:bold; color:black}
+.adj, .advex, .fld, .gl, .i, .ind, .lev, .mx, .nb, .vbs, 
+.nex, .qdef, .qenc, .qnb, .qsyn, .syn, .u, .vbx, .vix, .ctx, .collo, .ix, .xg,
+.ico, .cs, .fi, .a, .ei, .ri, .co, .cs, .C, .CO, .CB, UC
+		{font-style:italic}
+.hw,.vpr, .nw, .ihw, .bhw  /* bhw restrored for DeEn ; .ihw moved for es "K"; , .ct removed for German Rechen- */
+		{font-weight:bold; text-decoration:underline}
+.GG 	{font-weight:bold; font-style:italic}
+div.id, div.cpd 
+		{padding-left:0px; font-weight:bold}
+.reg, .fam, .coll, .la, .ide /* .ide removed  for Concise, but then puut back*/
+		{font-style:italic; font-weight: normal}
+.ps, .qps, .psv, .psyn, .ind, .pos, .gr, .infg, .u, .ei, .P, .indv, .old
+		{color:#003399; font-style:italic}
+
+.ul 		{text-decoration: underline}
+.stln	{border-bottom: 1px solid black}
+.sc, .xs, .hl, .fx, .M, .fhl
+		{font-variant: small-caps; text-transform:lowercase}
+.xr		{font-variant: small-caps; font-style:normal;} /* xr is diff itP, deC */
+.psec, .ol, .vsec, .lemma, .catgram, .artsem, .o, .divgr, .cb, .hg .ps, .fordiv, .base, .hbase
+		{display: block;}
+.fp, .para
+		{display: block;padding-top:10pt}
+.un, .divgr, .approfondimento, .cgl, .fun
+	 	{display: block; border: 1px solid black; padding:5px; background: white}
+.scw, .scvf, .hbhw, .ix, .cn, .bhwes, .base /*  show the cbhg header for DE? Yes, bbut hide hbhw; .base added for compounds*/
+		{display: none}
+.infg br, .pp br, .infmorf br, .la br, .ei br
+		{display:none}
+ol 		{padding-left: 20px;margin:2px;margin-left:5px}
+.ph, .fonetica		{ font-family:"Lucida Sans Unicode", "Arial Unicode MS","Lucida Grande"; color: #003399; font-size: 10pt; }
+.qreg	{font-family: arial narrow; }
+.xsdr	{font-family: times}
+#temp,
+.sg, .pg, .cpd, .ct, .ne, .eg
+		{display: block}
+/* for IT*/
+.se1, .pvp {display: block; padding-left:20px} 
+
+
+.OxAd {display: none;}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-187118-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div style="max-width:300px">
+<div style="font-weight:bold;font-size:15px;border-bottom: solid black 1px; border-top: solid black 1px; min-height:20px; background-color:#5E58C7;color:#FFFFFF; text-align:center">WordReference.com Dictionaries
+</div>
+
+<div style="border-bottom: solid black 1px; background-color:#918CE3; padding:2px; text-align:center;">
+
+<form method="GET" action="http://api.wordreference.com/index.aspx" class=lookup name="sbox" target="_self">
+	<input type="hidden" name="u" value="de96c">
+	<input type="text" name="w" id="si" maxlength="30" tabindex="1" onKeyDown="keyDown(event)" accesskey="s" title="Alt-(Shift)-S" value=""> 
+	<select size="1" name="dict" tabindex="2" id="dictselect">
+
+	<option value="enes">English-Spanish</option>
+	<option value="esen">Spanish-English</option>
+<!--	<option value="enen">English definition</option> -->
+	<optgroup label="More Dictionaries" style="font-size:8pt">
+		<option value="enfr">English&lt;-&gt;French</option>
+		<option value="enit">English&lt;-&gt;Italian</option>
+		<option value="enpt">English&lt;-&gt;Portuguese</option>
+<!--		<option value="ende">English&lt;-&gt;German</option> -->
+<!--		<option value="enru">English&lt;-&gt;Russian</option> -->
+		<option value="enpl">English&lt;-&gt;Polish</option>
+		<option value="enro">English&lt;-&gt;Romanian</option>
+		<option value="engr">English&lt;-&gt;Greek</option>
+		<option value="enzh">English&lt;-&gt;Chinese</option>
+		<option value="enja">English&lt;-&gt;Japanese</option>
+		<option value="enko">English&lt;-&gt;Korean</option>
+		<option value="encz">English&lt;-&gt;Czech</option>
+		<option value="entr">English&lt;-&gt;Turkish</option>
+		<option value="enar">English&lt;-&gt;Arabic</option>
+	</optgroup>
+
+	</select><input type="submit" value="Go" name="B" title="Look Up" tabindex="3" style="padding:0px">
+</form>
+
+</div>
+<div><p class='wrcopyright'><a name="fairy102"></a> <table class='WRD' onclick='redirectWR(event,"WRenes")'><tr class='wrtopsection'><td colspan='3' title='
+~~ Principal Translations ~
+'><strong>
+~~ Principal Translations ~
+</strong></td></tr>
+<tr class='even'><td><span 
+------- tWord: fairy
+</span> <span class='POS2'>n</span><br><span 
+------- Sense raro Fr2
+
+------- tSense: slang, pejorative
+</i> (homosexual)</span></td><td 
+------- tSyn: maricón 
+<em class='POS2'>nm</em></td></tr>
+<tr class='even'><td class='To2'>España, ofensivo</td><td 
+------- tSyn: reinona 
+<em class='POS2'>nf</em></td></tr>
+<tr class='even'><td class='To2'></td><td 
+------- tSyn: loca 
+<em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span 
+------- tWord: fairy
+</span> <span class='POS2'>n</span><br><span 
+------- tSense:  (folklore, mythology: winged creature)
+</span></td><td 
+------- tSyn: hada 
+<em class='POS2'>nf</em></td></tr>
+</table>
+<table class='WRreporterror'>
+<tr class='even more'><td>&nbsp;</td>
+<td style='text-align:right;'><a target='WRsug' title='Is something important missing? Report an error or suggest an improvement.' href="/english/suggestions.aspx?w=fairy&amp;dict=enes">Is something important missing? Report an error or suggest an improvement.</a></td></tr></table>
+<div><p class='wrcopyright'><a name="fairy102"></a> <table class='WRD' onclick='redirectWR(event,"WRenes")'><tr class='wrtopsection'><td colspan='3' 
+------- Compound Forms
+ id='compounds'><strong>Compound Forms:</strong></td></tr>
+<tr class='even'><td><span 
+------- tWord: fairy lights
+</span> <span class='POS2'>npl</span><br><span 
+------- Sense raro To2
+
+------- tSense: Panamá
+</i></span></td><td 
+------- tSyn: foquitos de colores 
+<em class='POS2'>nmpl</em></td></tr>
+<tr class='odd'><td><span 
+------- tWord: fairy lights
+</span> <span class='POS2'>npl</span></td><td 
+------- tSyn: lamparitas 
+<em class='POS2'>nfpl</em></td></tr>
+<tr class='even'><td><span 
+------- tWord: fairy lights
+</span> <span class='POS2'>npl</span></td><td 
+------- tSyn: luces de Navidad 
+<em class='POS2'>nfpl</em></td></tr>
+<tr class='odd'><td><span 
+------- tWord: fairy lights
+</span> <span class='POS2'>npl</span></td><td 
+------- tSyn: luces de variados colores en continuos cambios parpadeantes 
+<em class='POS2'>nfpl</em></td></tr>
+<tr class='even'><td><span 
+------- tWord: tooth fairy
+</span> <span class='POS2'>n</span><br><span 
+------- tSense:  (mythical being who collects baby teeth)
+</span></td><td 
+------- tSyn: Ratoncito Pérez 
+<em class='POS2'>nm</em></td></tr>
+<tr class='even'><td class='To2'></td><td 
+------- tSyn: el ratoncito 
+<em class='POS2'>nm</em></td></tr>
+</table>
+<table class='WRreporterror'>
+<tr class='odd more'><td>&nbsp;</td>
+<td style='text-align:right;'><a target='WRsug' title='Is something important missing? Report an error or suggest an improvement.' href="/english/suggestions.aspx?w=fairy&amp;dict=enes">Is something important missing? Report an error or suggest an improvement.</a></td></tr></table>
+
+</div>
+<script type="text/javascript">
+
+function redirectWR() {return;}
+function dr4sdgryt3(e,dict){return;}
+
+function keyDown(k)
+{var keycode=document.all?event.keyCode:k.which;if(document.getElementById('si')&&document.getElementById('si').value.length===0)
+{if((""+keycode)=="33"){document.getElementById('si').blur();}
+if((""+keycode)=="34"){document.getElementById('si').blur();}
+if((""+keycode)=="35"){document.getElementById('si').blur();}
+if((""+keycode)=="36"){document.getElementById('si').blur();}
+if((""+keycode)=="38"){document.getElementById('si').blur();}
+if((""+keycode)=="40"){document.getElementById('si').blur();}}}
+
+</script>
+</body>
+</html>

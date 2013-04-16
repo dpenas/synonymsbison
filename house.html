@@ -1,0 +1,343 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+<title>WordReference API</title>
+<META NAME='ROBOTS' CONTENT='NOINDEX'>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<style type="text/css">
+/*html,body {font-family: arial, verdana, sans-serif; font-size: 12px;margin-top:0px; margin-bottom:0px; height:100%;}*/
+html,body {font-family: arial, verdana, sans-serif; font-size: 12px; margin:0px; height:100%;}
+table.Rtbl {border: solid 1px white; line-height:16px; border-collapse:collapse;}
+div#Otbl {padding: 0px;}
+span.EsIPA { font-family:"Lucida Sans Unicode", "Arial Unicode MS","Lucida Grande"; color: blue; font-size: 10pt; }
+.small1 {font-size: x-small}
+tr.even	{background-color: #e8e8ff;vertical-align: top}
+tr.odd	{background-color: white;vertical-align: top}
+tr.evenEx {background-color: #e8e8ff;vertical-align: top}
+tr.oddEx  {background-color: white;vertical-align: top}
+td.Head	{padding-left:0px; padding-right: 10px; font-weight: bold; font-size:13px; text-decoration:underline; line-height:30px}
+
+#si {width:90%;max-width:180px;}
+#dictselect {font-size:11px;width:130px;}
+
+#Rtbl2		{position:absolute; right: 0px; top:278px; width:400px; border: solid 1px black;}
+table.Rtbl2	{line-height:16px; border-collapse:collapse;}
+/* .FrW2		{padding-left:5px;font-weight: bold;}
+*/
+.FrW2		{padding-left:1px;font-weight: bold;}
+.To2		{text-indent: 50px;font-style: italic}
+/* .FrCN2, td.ToW22, td.POS2	{padding-left:5px;}
+*/
+.FrCN2, td.ToW22, td.POS2	{padding-left:1px;font-size:11px;}
+.ToCN2	{padding-left:20px; font-style: italic}
+.ToW2	{padding-left:5px; padding-right: 5px}
+.Ex2, td.ToEx2	{padding-left: 5px; padding-right:5px; color:SlateGray;}
+.FrEx2	{padding-left: 5px; padding-right:5px; color:#483D8B;}
+.ToNt2	{padding-left: 5px; padding-right:5px; color:red;}
+span.POS2	{padding-left:2px;}
+.POS2		{color:#524BD3; font-style: italic;}
+tr.evenExHide, tr.oddExHide {display:none}
+
+
+
+/*
+.FrW2		{padding-left:5px;font-weight: bold;}
+.FrCN2 {padding-left:15px;}
+
+#si {width:90%;max-width:180px;}
+#dictselect {font-size:11px;width:130px;}
+
+
+
+#Rtbl2		{position:absolute; right: 0px; top:278px; width:400px; border: solid 1px black;}
+table.Rtbl2	{border: solid 1px white; line-height:16px; border-collapse:collapse;}
+td.FrW2		{padding-left:5px;font-weight: bold;}
+td.To2		{text-indent: 50px;font-style: italic}
+td.FrCN2, td.ToW22, td.POS2	{padding-left:5px;}
+td.ToCN2	{padding-left:20px; font-style: italic}
+td.ToW2	{padding-left:5px; padding-right: 5px}
+td.Ex2, td.ToEx2	{padding-left: 5px; padding-right:5px; color:SlateGray;}
+td.FrEx2	{padding-left: 5px; padding-right:5px; color:#483D8B;}
+td.ToNt2	{padding-left: 5px; padding-right:5px; color:red;}
+span.POS2	{padding-left:2px;}
+.POS2		{color:#524BD3; font-style: italic;}
+tr.evenExHide, tr.oddExHide {display:none}
+*/
+
+
+td.nums1	{font-weight:bold;color:#5E58C7; vertical-align:top;text-align:right}
+td.roman1	{font-weight:bold;color:#5E58C7; vertical-align:top;font-size:16px;}
+span.roman1	{font-weight:bold;color:#5E58C7; vertical-align:bottom;}
+span.b	{font-weight:bold;}
+span.i, .bl	{color:#003399;}
+span.r	{color:red;}
+span.ic	{font-style:italic;color:#003399;}
+span.supr1	{vertical-align:super;color:#003399;}
+span.ac	{font-variant:small-caps;color:red;font-weight:bold;}
+div.trans	{padding:0px}
+ol.entry li	{margin-top:5px;}
+ol {padding-left:13px;}
+.hm, .su, .hom, .APICE, .sup, .tab
+		{vertical-align: super; font-size:10px}
+.sub	{vertical-align: sub; font-size:8px}
+.hide 	{display:none}
+.abb, .cfrf, .con, .contr, .cvf, .divar, .ell, .ex, .exp, .exs, .fem, .fm, .frm, .hcvf, .dex,
+.hcw, .idx, .inf, .mex, .mod, .nh, .prv, .pvb, .pvbv, .sig, .var, .x, .xi, .xrru,
+.cw, .phw, .stxt, .cmp, .dex, .femv, .frmv, .vcp, .prvx, .idm, .cv, .cx, /* xg added from compare (where?), xr removed for deC; itenP xr, not xg */
+.ef, .fs, .lc, .le, .li, .lo, .lp, .ls, .lu, .lv, .sb, .sl, .sp, .v, .vs, .G, .G2, .VF, .CG, .lemma, .fordiv, .cv, .nv,
+.f, .h2, .rb, .rbi, .pg, .bp, .pvv  /* pv removed for it, since pv not allowed, pg added for de */
+		{font-weight:bold; color:black}
+.adj, .advex, .fld, .gl, .i, .ind, .lev, .mx, .nb, .vbs, 
+.nex, .qdef, .qenc, .qnb, .qsyn, .syn, .u, .vbx, .vix, .ctx, .collo, .ix, .xg,
+.ico, .cs, .fi, .a, .ei, .ri, .co, .cs, .C, .CO, .CB, UC
+		{font-style:italic}
+.hw,.vpr, .nw, .ihw, .bhw  /* bhw restrored for DeEn ; .ihw moved for es "K"; , .ct removed for German Rechen- */
+		{font-weight:bold; text-decoration:underline}
+.GG 	{font-weight:bold; font-style:italic}
+div.id, div.cpd 
+		{padding-left:0px; font-weight:bold}
+.reg, .fam, .coll, .la, .ide /* .ide removed  for Concise, but then puut back*/
+		{font-style:italic; font-weight: normal}
+.ps, .qps, .psv, .psyn, .ind, .pos, .gr, .infg, .u, .ei, .P, .indv, .old
+		{color:#003399; font-style:italic}
+
+.ul 		{text-decoration: underline}
+.stln	{border-bottom: 1px solid black}
+.sc, .xs, .hl, .fx, .M, .fhl
+		{font-variant: small-caps; text-transform:lowercase}
+.xr		{font-variant: small-caps; font-style:normal;} /* xr is diff itP, deC */
+.psec, .ol, .vsec, .lemma, .catgram, .artsem, .o, .divgr, .cb, .hg .ps, .fordiv, .base, .hbase
+		{display: block;}
+.fp, .para
+		{display: block;padding-top:10pt}
+.un, .divgr, .approfondimento, .cgl, .fun
+	 	{display: block; border: 1px solid black; padding:5px; background: white}
+.scw, .scvf, .hbhw, .ix, .cn, .bhwes, .base /*  show the cbhg header for DE? Yes, bbut hide hbhw; .base added for compounds*/
+		{display: none}
+.infg br, .pp br, .infmorf br, .la br, .ei br
+		{display:none}
+ol 		{padding-left: 20px;margin:2px;margin-left:5px}
+.ph, .fonetica		{ font-family:"Lucida Sans Unicode", "Arial Unicode MS","Lucida Grande"; color: #003399; font-size: 10pt; }
+.qreg	{font-family: arial narrow; }
+.xsdr	{font-family: times}
+#temp,
+.sg, .pg, .cpd, .ct, .ne, .eg
+		{display: block}
+/* for IT*/
+.se1, .pvp {display: block; padding-left:20px} 
+
+
+.OxAd {display: none;}
+
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-187118-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div style="max-width:300px">
+<div style="font-weight:bold;font-size:15px;border-bottom: solid black 1px; border-top: solid black 1px; min-height:20px; background-color:#5E58C7;color:#FFFFFF; text-align:center">WordReference.com Dictionaries
+</div>
+
+<div style="border-bottom: solid black 1px; background-color:#918CE3; padding:2px; text-align:center;">
+
+<form method="GET" action="http://api.wordreference.com/index.aspx" class=lookup name="sbox" target="_self">
+	<input type="hidden" name="u" value="de96c">
+	<input type="text" name="w" id="si" maxlength="30" tabindex="1" onKeyDown="keyDown(event)" accesskey="s" title="Alt-(Shift)-S" value=""> 
+	<select size="1" name="dict" tabindex="2" id="dictselect">
+
+	<option value="enes">English-Spanish</option>
+	<option value="esen">Spanish-English</option>
+<!--	<option value="enen">English definition</option> -->
+	<optgroup label="More Dictionaries" style="font-size:8pt">
+		<option value="enfr">English&lt;-&gt;French</option>
+		<option value="enit">English&lt;-&gt;Italian</option>
+		<option value="enpt">English&lt;-&gt;Portuguese</option>
+<!--		<option value="ende">English&lt;-&gt;German</option> -->
+<!--		<option value="enru">English&lt;-&gt;Russian</option> -->
+		<option value="enpl">English&lt;-&gt;Polish</option>
+		<option value="enro">English&lt;-&gt;Romanian</option>
+		<option value="engr">English&lt;-&gt;Greek</option>
+		<option value="enzh">English&lt;-&gt;Chinese</option>
+		<option value="enja">English&lt;-&gt;Japanese</option>
+		<option value="enko">English&lt;-&gt;Korean</option>
+		<option value="encz">English&lt;-&gt;Czech</option>
+		<option value="entr">English&lt;-&gt;Turkish</option>
+		<option value="enar">English&lt;-&gt;Arabic</option>
+	</optgroup>
+
+	</select><input type="submit" value="Go" name="B" title="Look Up" tabindex="3" style="padding:0px">
+</form>
+
+</div>
+<div><p class='wrcopyright'><a name="house104"></a> <table class='WRD' onclick='redirectWR(event,"WRenes")'><tr class='wrtopsection'><td colspan='3' title='Principal Translations'><strong>Principal Translations</strong></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (residence building)</span></td><td class='ToWrd' >casa <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>vtr</span><br><span class='FrCN2'> (keep in a dwelling)</span></td><td class='ToWrd' >alojar<a title="conjugate alojar" class='conjugate' href="/conj/ESverbs.aspx?v=alojar">⇒</a> <em class='POS2'>vtr</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >albergar<a title="conjugate albergar" class='conjugate' href="/conj/ESverbs.aspx?v=albergar">⇒</a> <em class='POS2'>vtr</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>vtr</span><br><span class='FrCN2'> (provide a storage place)</span></td><td class='ToWrd' >almacenar<a title="conjugate almacenar" class='conjugate' href="/conj/ESverbs.aspx?v=almacenar">⇒</a> <em class='POS2'>vtr</em></td></tr>
+<tr class='odd'><td colspan='3' class='wrtopsection'>&nbsp;</td></tr><tr class='wrtopsection'><td colspan='3' title='Additional Translations' class='additional'><strong>Additional Translations</strong></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (household) <i class='To2' >las personas</i></span></td><td class='ToWrd' >casa <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (building)</span></td><td class='ToWrd' >edificio <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (hall) <i class='To2' >parlamento, con mayúscula</i></span></td><td class='ToWrd' >Casa <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td class='To2'></td><td class='ToWrd' >Cámara <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (family) <i class='To2' >en mayúscula</i></span></td><td class='ToWrd' >Casa <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >dinastía <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (shelter)</span></td><td class='ToWrd' >casa <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (government site)</span></td><td class='ToWrd' >Senado <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td class='To2'>España</td><td class='ToWrd' >edificio <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (legislative body) <i class='To2' >parlamento</i></span></td><td class='ToWrd' >cámara <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (business firm) <i class='To2' >empresa</i></span></td><td class='ToWrd' >agencia <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (university college)</span></td><td class='ToWrd' >residencia <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td class='To2'>España</td><td class='ToWrd' >colegio mayor <em class='POS2'>loc nom</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (members of a college) <i class='To2' >facultad</i></span></td><td class='ToWrd' >casa <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (gambling: casino) <i class='To2' >casino</i></span></td><td class='ToWrd' >casa <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (audience) <i class='To2' >local</i></span></td><td class='ToWrd' >lleno <em class='POS2'>adj</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (convent)</span></td><td class='ToWrd' >convento, monasterio <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td class='To2'></td><td class='ToWrd' >abadía, cartuja  <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (church, mosque, synagogue) <i class='To2' >de Dios</i></span></td><td class='ToWrd' >casa <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='Fr2'>UK</i> (residential division in boarding school)</span></td><td class='ToWrd' >colegio mayor <em class='POS2'>loc nom</em></td></tr>
+<tr class='even'><td class='To2'>sistema inglés</td><td class='ToWrd' >casa <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>vtr</span><br><span class='FrCN2'> (provide housing)</span></td><td class='ToWrd' >albergar<a title="conjugate albergar" class='conjugate' href="/conj/ESverbs.aspx?v=albergar">⇒</a> <em class='POS2'>vtr</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house</span> <span class='POS2'>vtr</span><br><span class='FrCN2'> (provide a workplace)</span></td><td class='ToWrd' >albergar<a title="conjugate albergar" class='conjugate' href="/conj/ESverbs.aspx?v=albergar">⇒</a> <em class='POS2'>vtr</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house</span> <span class='POS2'>vtr</span><br><span class='FrCN2'> (secure sthg)</span></td><td class='ToWrd' >protegerse<a title="conjugate protegerse" class='conjugate' href="/conj/ESverbs.aspx?v=protegerse">⇒</a> <em class='POS2'>vtr</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >envolver<a title="conjugate envolver" class='conjugate' href="/conj/ESverbs.aspx?v=envolver">⇒</a> <em class='POS2'>vtr</em></td></tr>
+</table>
+<table class='WRreporterror'>
+<tr class='even more'><td>&nbsp;</td>
+<td style='text-align:right;'><a target='WRsug' title='Is something important missing? Report an error or suggest an improvement.' href="/english/suggestions.aspx?w=house&amp;dict=enes">Is something important missing? Report an error or suggest an improvement.</a></td></tr></table>
+<div><p class='wrcopyright'><a name="house104"></a> <table class='WRD' onclick='redirectWR(event,"WRenes")'><tr class='wrtopsection'><td colspan='3' title='Compound Forms' id='compounds'><strong>Compound Forms:</strong></td></tr>
+<tr class='even'><td><span class='FrW2'>art house film</span> <span class='POS2'>n</span></td><td class='ToWrd' >filme de autor <em class='POS2'></em></td></tr>
+<tr class='odd'><td><span class='FrW2'>boarding house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (house offering board and lodging)</span></td><td class='ToWrd' >Casa de huéspedes <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'>España</td><td class='ToWrd' >pensión <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >hostería <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>change house</span> <span class='POS2'></span></td><td class='ToWrd' >Casa de cambio <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>change house</span> <span class='POS2'></span><br><span class='FrCN2'> (foreign exchange)</span></td><td class='ToWrd' >cambiaria <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>chapter house</span> <span class='POS2'></span></td><td class='ToWrd' >sala de reunión <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>chapter house</span> <span class='POS2'></span></td><td class='ToWrd' >sala capitular <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>charnel house</span> <span class='POS2'></span><br><span class='FrCN2'> <i class='Fr2'>US</i></span></td><td class='ToWrd' >osario <em class='POS2'></em></td></tr>
+<tr class='odd'><td><span class='FrW2'>clean house</span> <span class='POS2'>v</span><br><span class='FrCN2'> <i class='Fr2'>literal</i> (do housework)</span></td><td class='ToWrd' >limpiar la casa <em class='POS2'>loc verb</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >hacer el quehacer, hacer los quehaceres <em class='POS2'>loc verb</em></td></tr>
+<tr class='even'><td><span class='FrW2'>clean house</span> <span class='POS2'>v</span><br><span class='FrCN2'> <i class='Fr2'>figurative</i> (business, government: reform , change personnel) <i class='To2' >fam</i></span></td><td class='ToWrd' >hacer limpieza <em class='POS2'>loc verb</em></td></tr>
+<tr class='even'><td class='To2'></td><td class='ToWrd' >purgar<a title="conjugate purgar" class='conjugate' href="/conj/ESverbs.aspx?v=purgar">⇒</a> <em class='POS2'>vtr</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>clean house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (house that is free of dirt)</span></td><td class='ToWrd' >casa limpia <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>clearing house, clearinghouse, clearing-house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (financial: central institution that settles transactions) <i class='To2' >Argentina</i></span></td><td class='ToWrd' >cámara de compensación <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>clearing house, clearinghouse, clearing-house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (academic: collects and distributes information)</span></td><td class='ToWrd' >repositorio <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>coffee house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (café, small restaurant where fresh coffee is served)</span></td><td class='ToWrd' >café <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>coffee house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (Netherlands: café where cannabis is served) <i class='To2' >España</i></span></td><td class='ToWrd' >coffee house <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td class='To2'>España</td><td class='ToWrd' >fumadero de cannabis  <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>council house</span> <span class='POS2'>n</span></td><td class='ToWrd' >casa de protección oficial <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>council house</span> <span class='POS2'>n</span></td><td class='ToWrd' >vivienda de protección oficial <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>dance house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='Fr2'>US</i> (venue where dances are held)</span></td><td class='ToWrd' >discoteca <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td class='To2'>Argentina</td><td class='ToWrd' >boliche <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>death house</span> <span class='POS2'></span></td><td class='ToWrd' >pasillo de la muerte <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>detached house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (house with no shared wall)</span></td><td class='ToWrd' >vivienda/casa aislada <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>discount house</span> <span class='POS2'></span></td><td class='ToWrd' >tienda que vende mercancías con descuento <em class='POS2'>n</em></td></tr>
+<tr class='even'><td><span class='FrW2'>doll's house</span> <span class='POS2'></span></td><td class='ToWrd' >casa de muñecas <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>dower house</span> <span class='POS2'></span><br><span class='FrCN2'> <i class='Fr2'>UK</i></span></td><td class='ToWrd' >casa de campo <em class='POS2'>n</em></td></tr>
+<tr class='even'><td><span class='FrW2'>dwelling house</span> <span class='POS2'>n</span></td><td class='ToWrd' >casa particular <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>dwelling house</span> <span class='POS2'>n</span></td><td class='ToWrd' >residencia <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>eating house</span> <span class='POS2'></span></td><td class='ToWrd' >comedero <em class='POS2'> nm</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>fashion house</span> <span class='POS2'>n</span></td><td class='ToWrd' >atelier <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>fashion house</span> <span class='POS2'>n</span></td><td class='ToWrd' >firma de alta costura <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>forcing house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='To2' >figurado</i></span></td><td class='ToWrd' >instituto donde se llevan a cabo estudios intensivos <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>forcing house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='To2' >jardinería</i></span></td><td class='ToWrd' >cámara de forzadura <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>forcing house</span> <span class='POS2'>n</span></td><td class='ToWrd' >maduradero <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>frame house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (house with a timber frame)</span></td><td class='ToWrd' >casa de madera  <em class='POS2'>nf </em></td></tr>
+<tr class='odd'><td><span class='FrW2'>fraternity house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='Fr2'>US</i> (male college students' residence)</span></td><td class='ToWrd' >casa de la fraternidad <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'>España</td><td class='ToWrd' >colegio mayor <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>free house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='Fr2'>GB</i> <i class='To2' >porque no está vinculado con una cervecería</i></span></td><td class='ToWrd' >pub que puede vender cualquier marca de cerveza <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>front of house</span> <span class='POS2'></span><br><span class='FrCN2'> (theater, cinema) <i class='To2' >teatro, cine, sala</i></span></td><td class='ToWrd' >vestíbulo <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>front of house</span> <span class='POS2'></span><br><span class='FrCN2'> (restaurant) <i class='To2' >en un restaurante</i></span></td><td class='ToWrd' >comedor <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>front of the house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (façade of residential building, house front)</span></td><td class='ToWrd' >fachada <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >frente de la casa <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >fachada principal <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>front of the house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (rooms towards front of a house)</span></td><td class='ToWrd' >habitaciones del frente <em class='POS2'>nfpl</em></td></tr>
+<tr class='even'><td class='To2'></td><td class='ToWrd' >frente <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td class='To2'></td><td class='ToWrd' >habitaciones que dan a fachada  <em class='POS2'>nmpl </em></td></tr>
+<tr class='odd'><td><span class='FrW2'>full house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='To2' >naipes</i></span></td><td class='ToWrd' >full  <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>full house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='To2' >en un espectáculo</i></span></td><td class='ToWrd' >casa llena <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>full house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (cards; )</span></td><td class='ToWrd' >completo <em class='POS2'>adj</em></td></tr>
+<tr class='even'><td><span class='FrW2'>full house</span> <span class='POS2'>n</span></td><td class='ToWrd' >lleno <em class='POS2'>adj</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>fun house</span> <span class='POS2'></span><br><span class='FrCN2'> (amusement park) <i class='To2' >atracción de feria</i></span></td><td class='ToWrd' >casa de la risa <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>gambling house</span> <span class='POS2'></span></td><td class='ToWrd' >casa de juego <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>garden house</span> <span class='POS2'></span><br><span class='FrCN2'> (also: summerhouse)</span></td><td class='ToWrd' >glorieta <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>garden house</span> <span class='POS2'></span><br><span class='FrCN2'> (also: summerhouse)</span></td><td class='ToWrd' >cenador <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>garrison house</span> <span class='POS2'></span><br><span class='FrCN2'> (military) <i class='To2' >militar</i></span></td><td class='ToWrd' >comandancia de guarnición <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>glass house</span> <span class='POS2'></span><br><span class='FrCN2'> (also: greenhouse)</span></td><td class='ToWrd' >invernadero <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>guest house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (private residence offering board and lodging)</span></td><td class='ToWrd' >casa de huéspedes <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>hash house</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='Fr2'>US, slang</i> (cheap restaurant) <i class='To2' >Argentina, fam</i></span></td><td class='ToWrd' >boliche <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td class='To2'>España, fam</td><td class='ToWrd' >chiringuito <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td class='To2'>México fam</td><td class='ToWrd' >fonda <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td class='To2'>Puerto Rico</td><td class='ToWrd' >chinchorro <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td class='To2'>Argentina</td><td class='ToWrd' >bodegón <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>haunted house</span> <span class='POS2'>n</span><br><span class='FrCN2'> (house occupied by a ghost)</span></td><td class='ToWrd' >casa encantada <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >casa embrujada <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>head house</span> <span class='POS2'></span></td><td class='ToWrd' >sede central <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house agent</span> <span class='POS2'>n</span><br><span class='FrCN2'> <i class='To2' >GB</i></span></td><td class='ToWrd' >agente inmobiliario <em class='POS2'></em></td></tr>
+<tr class='even'><td><span class='FrW2'>house arrest</span> <span class='POS2'></span></td><td class='ToWrd' >arresto domiciliario <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house car</span> <span class='POS2'></span></td><td class='ToWrd' >vagón cubierto <em class='POS2'>n</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house cat</span> <span class='POS2'>n</span><br><span class='FrCN2'> (domestic feline, pet cat)</span></td><td class='ToWrd' >gato <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td class='To2'>frml </td><td class='ToWrd' >gato doméstico  <em class='POS2'>nm </em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house cleaner</span> <span class='POS2'>n</span><br><span class='FrCN2'> (sb employed to do domestic cleaning) <i class='To2' >fam</i></span></td><td class='ToWrd' >señora/chica de la limpieza <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >asistenta <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >sirvienta <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house counsel</span> <span class='POS2'></span></td><td class='ToWrd' >abogado de empresa <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house detective</span> <span class='POS2'></span></td><td class='ToWrd' >detective privado de hotel <em class='POS2'>n</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house divided against itself</span> <span class='POS2'></span><br><span class='FrCN2'> (a house divided against itself cannot stand (A. Lincoln))</span></td><td class='ToWrd' >una casa enfrentada contra sí misma no puede permanecer en pie <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house divided against itself</span> <span class='POS2'></span></td><td class='ToWrd' >casa dividida contra sí misma <em class='POS2'>n</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house doctor</span> <span class='POS2'></span></td><td class='ToWrd' >médico de familia <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house dog</span> <span class='POS2'>n</span><br><span class='FrCN2'> (domestic canine, pet dog)</span></td><td class='ToWrd' >perro <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td class='To2'>frml</td><td class='ToWrd' >perro doméstico  <em class='POS2'>nm </em></td></tr>
+<tr class='even'><td><span class='FrW2'>house finch</span> <span class='POS2'></span><br><span class='FrCN2'> (Zoology)</span></td><td class='ToWrd' >gorrión <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house flag</span> <span class='POS2'></span></td><td class='ToWrd' >bandera de naviera <em class='POS2'>n</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house furnishings</span> <span class='POS2'></span></td><td class='ToWrd' >mobiliario doméstico <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house guest</span> <span class='POS2'>n</span><br><span class='FrCN2'> (sb staying at one's home)</span></td><td class='ToWrd' >huésped <em class='POS2'>nm</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >invitado <em class='POS2'>nm</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house husband</span> <span class='POS2'>n</span></td><td class='ToWrd' >marido que no trabaja fuera y permanece en casa haciendo los quehaceres y cuidando a los niños <em class='POS2'></em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house in</span> <span class='POS2'>vtr</span><br><span class='FrCN2'> (accommodate in)</span></td><td class='ToWrd' >ubicar en <em class='POS2'>pp + prep</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >albergar en <em class='POS2'>v tr</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >alojar en <em class='POS2'>pp + prep</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house lights</span> <span class='POS2'>npl</span><br><span class='FrCN2'> (lights of a residential building) <i class='To2' >fam</i></span></td><td class='ToWrd' >luces <em class='POS2'>nfpl</em></td></tr>
+<tr class='even'><td class='To2'></td><td class='ToWrd' >iluminación <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house lights</span> <span class='POS2'>npl</span><br><span class='FrCN2'> (theatre: lights over seating area)</span></td><td class='ToWrd' >luz de sala <em class='POS2'>nf</em></td></tr>
+<tr class='odd'><td class='To2'></td><td class='ToWrd' >iluminación <em class='POS2'>nf</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house manager</span> <span class='POS2'></span></td><td class='ToWrd' >empresario teatral <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house martin</span> <span class='POS2'></span><br><span class='FrCN2'> (Zoology)</span></td><td class='ToWrd' >avión común <em class='POS2'>n</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house mover</span> <span class='POS2'></span></td><td class='ToWrd' >encargado de mudanzas <em class='POS2'>n</em></td></tr>
+<tr class='odd'><td><span class='FrW2'>house moving</span> <span class='POS2'></span></td><td class='ToWrd' >mudanza <em class='POS2'>n</em></td></tr>
+<tr class='even'><td><span class='FrW2'>house of assembly</span> <span class='POS2'></span></td><td class='ToWrd' >congreso <em class='POS2'>n</em></td></tr>
+
+</table>
+<table class='WRreporterror'>
+<td><a href='/es/translation.asp?tranword=house&amp;start=100' style='font-weight:bold;'>Next 100</a></td>
+<td style='text-align:right;'><a target='WRsug' title='Is something important missing? Report an error or suggest an improvement.' href="/english/suggestions.aspx?w=house&amp;dict=enes">Is something important missing? Report an error or suggest an improvement.</a></td></tr></table>
+
+</div>
+<script type="text/javascript">
+
+function redirectWR() {return;}
+function dr4sdgryt3(e,dict){return;}
+
+function keyDown(k)
+{var keycode=document.all?event.keyCode:k.which;if(document.getElementById('si')&&document.getElementById('si').value.length===0)
+{if((""+keycode)=="33"){document.getElementById('si').blur();}
+if((""+keycode)=="34"){document.getElementById('si').blur();}
+if((""+keycode)=="35"){document.getElementById('si').blur();}
+if((""+keycode)=="36"){document.getElementById('si').blur();}
+if((""+keycode)=="38"){document.getElementById('si').blur();}
+if((""+keycode)=="40"){document.getElementById('si').blur();}}}
+
+</script>
+</body>
+</html>

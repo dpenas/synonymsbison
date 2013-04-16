@@ -1,35 +1,31 @@
 %{
-#include "y.tab.h"
 #include <stdio.h>
 #include <stdlib.h>
 %}
 
 something [^\n\t>]+
-obr "<br>"
-cbr "</br>"
-ou "<u>"
-odiv "<div "
-cdiv "</div>"
-oul "<ul>"
-cul "</ul>"
-cu "</u>"
-ob "<b>"
-ob1 "<b "
-cb "</b>"
-oa "<a "
-ca "</a>"
-oli "<li "
-oi "<i>"
-ci "</i>"
-cli "</li>"
-ospan "<span "
-cspan "</span>"
 word [^\n\t<>]+
+thesaurus "WordReference English Thesaurus"
+ci "</i> "
 sense "Sense:"
 title "title"
+
+class_FRW2 "class='FrW2'>"
+class_FrCN2 "class='FrCN2'>"
+class_Fr2 " <i class='Fr2'>"
+class_To2 " <i class='To2' >"
+class_ToWrd "class='ToWrd' >"
+trans "Principal Translations"
+compForms "title='Compound Forms'"
+
 %s _sense
 %s _syn
 %s _wanted
+%s _toTranslate
+%s _tWord
+%s _tSense
+%s _tSyn
+
 %%
 
 <_syn>{word} {printf("\n-- Syn: %s\n", yytext); yylval.string = yytext; BEGIN(_wanted); return SYNONYM;}
@@ -39,7 +35,26 @@ title "title"
 <_wanted>{sense}{ci} {BEGIN (_sense);}
 <_wanted>{title}{something}">" {BEGIN(_syn);}
 
-{obr}{ospan}{something}">"{word}{cspan} {printf("IntroWordreference\n"); BEGIN(_wanted);}
+{thesaurus} {printf("** IntroWordreference\n"); BEGIN(_wanted);}
 
+
+
+
+
+
+<_tSyn>{word} {printf("\n------- tSyn: %s\n", yytext); BEGIN(_toTranslate);}
+
+<_tSense>{class_Fr2} {printf("\n------- Sense raro Fr2\n"); BEGIN(_tSense);}
+<_tSense>{class_To2} {printf("\n------- Sense raro To2\n"); BEGIN(_tSense);}
+<_tSense>{word} {printf("\n------- tSense: %s\n", yytext); BEGIN(_toTranslate);}
+
+<_tWord>{word} {printf("\n------- tWord: %s\n",yytext); BEGIN(_toTranslate);}
+
+<_toTranslate>{class_ToWrd} {BEGIN(_tSyn);}
+<_toTranslate>{compForms} {printf("\n------- Compound Forms\n"); BEGIN(_toTranslate);}
+<_toTranslate>{class_FRW2} {BEGIN(_tWord);}
+<_toTranslate>{class_FrCN2} {BEGIN(_tSense);}
+
+{trans} {printf("\n~~ Principal Translations ~\n"); BEGIN(_toTranslate);}
 
 %%
