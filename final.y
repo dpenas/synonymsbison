@@ -35,8 +35,8 @@ void download_url(char* url){
 }
 
 void yyerror (char *s) {
-	printf("error\n");
-	printf("%s\n", s);
+	printf("\nerror: %s\n", s);
+	exit(1);
 }
 
 void insertsenses(char* sense){
@@ -79,13 +79,13 @@ void insertTrans(char * cosas){
 	char* string;
 }
 
-%token <string> SYNONYM SENSE TOTRANS TRANS TSENSE
-%type <string> thesaurus synonyms senses tsense tword
+%token <string> SYNONYM SENSE TOTRANS TRANS TSENSE NOTFOUND
+%type <string> thesaurus synonyms senses tsense tword synerror
 %start S
 
 %%
 
-S: thesaurus | translations
+S: thesaurus | translations | synerror
 
 thesaurus: senses|synonyms {};
 
@@ -111,6 +111,8 @@ tsense: tword TSENSE {insertTrans($2);}
 tword: tsense TRANS {insertTrans($2);}
      | tword TRANS {insertTrans($2);}
      | TRANS {insertTrans($1);}
+
+synerror: NOTFOUND {yyerror("The word isn't in the dictionary\n");}
 
 %%
 int main(){

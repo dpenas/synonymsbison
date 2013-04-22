@@ -18,6 +18,7 @@ class_To2 " <i class='To2' >"
 class_ToWrd "class='ToWrd' >"
 trans "Principal Translations"
 compForms "title='Compound Forms'"
+noentryfound "noEntryFound"
 
 %s _sense
 %s _syn
@@ -57,5 +58,7 @@ compForms "title='Compound Forms'"
 <_toTranslate>{class_FrCN2} {BEGIN(_tSense);}
 
 {trans} {printf("\n~~ Principal Translations ~\n"); BEGIN(_toTranslate);}
+
+{noentryfound} {yylval.string = yytext; return NOTFOUND;}
 
 %%
