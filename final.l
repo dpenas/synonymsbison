@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include "y.tab.h"
 %}
 
 something [^\n\t>]+
@@ -42,13 +43,13 @@ compForms "title='Compound Forms'"
 
 
 
-<_tSyn>{word} {printf("\n------- tSyn: %s\n", yytext); BEGIN(_toTranslate);}
+<_tSyn>{word} {printf("\n------- tSyn: %s\n", yytext); BEGIN(_toTranslate); yylval.string = yytext; return TRANS;}
 
 <_tSense>{class_Fr2} {printf("\n------- Sense raro Fr2\n"); BEGIN(_tSense);}
 <_tSense>{class_To2} {printf("\n------- Sense raro To2\n"); BEGIN(_tSense);}
-<_tSense>{word} {printf("\n------- tSense: %s\n", yytext); BEGIN(_toTranslate);}
+<_tSense>{word} {printf("\n------- tSense: %s\n", yytext); BEGIN(_toTranslate); yylval.string = yytext; return TSENSE;}
 
-<_tWord>{word} {printf("\n------- tWord: %s\n",yytext); BEGIN(_toTranslate);}
+<_tWord>{word} {printf("\n------- tWord: %s\n",yytext); BEGIN(_toTranslate);yylval.string = yytext; return TOTRANS;}
 
 <_toTranslate>{class_ToWrd} {BEGIN(_tSyn);}
 <_toTranslate>{compForms} {printf("\n------- Compound Forms\n"); BEGIN(_toTranslate);}

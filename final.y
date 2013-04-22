@@ -68,6 +68,10 @@ void printsynonyms(){
 		fprintf(file, "\n");
 }
 
+void insertTrans(char * cosas){
+	fprintf(file, " %s ", cosas);
+}
+
 %}
 
 
@@ -75,13 +79,13 @@ void printsynonyms(){
 	char* string;
 }
 
-%token <string> SYNONYM SENSE
-%type <string> thesaurus synonyms senses
+%token <string> SYNONYM SENSE TOTRANS TRANS TSENSE
+%type <string> thesaurus synonyms senses tsense tword
 %start S
 
 %%
 
-S: thesaurus
+S: thesaurus | translations
 
 thesaurus: senses|synonyms {};
 
@@ -93,6 +97,20 @@ synonyms: synonyms SYNONYM {inserteverything($2);}
 	| senses SENSE {inserteverything($2);}
 	| SYNONYM {inserteverything($1);}
 
+translations: totrans | tsense | tword {};
+
+totrans: TOTRANS {insertTrans($1);}
+     | tsense TOTRANS {insertTrans($2);}
+
+tsense: tword TSENSE {insertTrans($2);}
+      | tsense TSENSE {insertTrans($2);}
+      | totrans TSENSE {insertTrans($2);}
+      | tword TOTRANS {insertTrans($2);}
+      | TSENSE {insertTrans($1);}
+
+tword: tsense TRANS {insertTrans($2);}
+     | tword TRANS {insertTrans($2);}
+     | TRANS {insertTrans($1);}
 
 %%
 int main(){
@@ -100,7 +118,7 @@ int main(){
 	//url = create_url("house");
 	//download_url(url);
 	//printf("Descargado HTML RESULT\n");
-	file = fopen("salida.txt","w");
+	file = fopen("salida.txt","a++");
 	yyparse();
 	printf("IMPRIMIMOS\n");
 	printsynonyms();
