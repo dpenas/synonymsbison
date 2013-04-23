@@ -1,8 +1,7 @@
 %{
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include "createhtml.h"
 
 char everything[100][100];
 int number_everything = 0;
@@ -51,21 +50,41 @@ void inserteverything(char* something){
 	number_everything++;
 }
 
+void beginprinthtml(FILE* file){
+	createhtml(file);	
+}
+
+void printsensehtml (FILE* file, char* sense){
+	char* createhtml1 = "<tr class=''><td><span class='FrW2'>";
+	char* createhtml2 = "</span> </td></tr>";
+
+	fprintf(file, "%s", createhtml1);
+	fprintf(file, "%s", sense);
+	fprintf(file, "%s", createhtml2);
+}
+
+void printwordhtml (FILE* file, char* word){
+	char* createhtml = "<tr class= ''><td class='ToWrd' >";
+	char* createhtml1 = "</td></tr>";
+	fprintf(file, "%s", createhtml);
+	fprintf(file, "%s", word);
+	fprintf(file, "%s", createhtml1);
+}
+
 void printsynonyms(){
 	int i, j, count;
 	count = 0;
 	for (i = 0; i < number_senses; i++){
-		fprintf(file, "\nSense: %s\n", everything[count]);
+		printsensehtml(file, everything[count]);
 		count++;
 		for (j = count; j < senses[i+1]; j++){
-			fprintf(file, " %s ", everything[j]);
+			printwordhtml(file, everything[j]);
 			count++;
 		}
 	}
 	for (i = count; i < number_everything; i++){
-		fprintf(file, " %s ", everything[i]);
+		printwordhtml(file, everything[i]);
 	}
-		fprintf(file, "\n");
 }
 
 void insertTrans(char * cosas){
@@ -120,8 +139,8 @@ int main(){
 	//url = create_url("house");
 	//download_url(url);
 	//printf("Descargado HTML RESULT\n");
-	file = fopen("salida.txt","a++");
+	file = fopen("salida.html","w");
 	yyparse();
-	printf("IMPRIMIMOS\n");
+	beginprinthtml(file);
 	printsynonyms();
 }
