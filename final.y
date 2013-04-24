@@ -82,12 +82,12 @@ void printsynonyms(){
 	int tab = 0;
 	count = 0;
 	for (i = 0; i < number_senses; i++){
-		printsensehtml(file, everything[count], tab);
 		tab = 0;
-		count++;
 		if (senses[i+1] == 0){
 			tab=1;	
 		}
+		printsensehtml(file, everything[count], tab);
+		count++;
 		for (j = count; j < senses[i+1]; j++){
 			printwordhtml(file, everything[j]);
 			count++;

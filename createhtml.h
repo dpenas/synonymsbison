@@ -1,6 +1,5 @@
 #include <stdio.h>
 void createhtml(FILE* file){
-	printf("HOLAAA\n");
 	char* beginhtml = "<!DOCTYPE html><html><head><body><title>Salida</title><style type=";
 	char* beginhtml1 = "text/css";
 	char* beginhtml2 = ">";
