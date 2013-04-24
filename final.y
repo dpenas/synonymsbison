@@ -54,17 +54,23 @@ void beginprinthtml(FILE* file){
 	createhtml(file);	
 }
 
-void printsensehtml (FILE* file, char* sense){
-	char* createhtml1 = "<tr class=''><td><span class='FrW2'>";
-	char* createhtml2 = "</span> </td></tr>";
-
+void printsensehtml (FILE* file, char* sense, int flag){
+	char* createhtml1;
+	char* createhtml2;
+	if (flag == 0){
+		createhtml1 = "<tr class='odd'><td><span class='FrW2'>";
+		createhtml2 = "</span></td></tr>";
+	}else{
+		createhtml1 = "<tr class='even'><td><span class='To2'>";
+		createhtml2 = "</span></td></tr>";
+	}
 	fprintf(file, "%s", createhtml1);
 	fprintf(file, "%s", sense);
 	fprintf(file, "%s", createhtml2);
 }
 
 void printwordhtml (FILE* file, char* word){
-	char* createhtml = "<tr class= ''><td class='ToWrd' >";
+	char* createhtml = "<tr class= 'even'><td class='ToWrd'>";
 	char* createhtml1 = "</td></tr>";
 	fprintf(file, "%s", createhtml);
 	fprintf(file, "%s", word);
@@ -73,10 +79,15 @@ void printwordhtml (FILE* file, char* word){
 
 void printsynonyms(){
 	int i, j, count;
+	int tab = 0;
 	count = 0;
 	for (i = 0; i < number_senses; i++){
-		printsensehtml(file, everything[count]);
+		printsensehtml(file, everything[count], tab);
+		tab = 0;
 		count++;
+		if (senses[i+1] == 0){
+			tab=1;	
+		}
 		for (j = count; j < senses[i+1]; j++){
 			printwordhtml(file, everything[j]);
 			count++;
@@ -85,10 +96,6 @@ void printsynonyms(){
 	for (i = count; i < number_everything; i++){
 		printwordhtml(file, everything[i]);
 	}
-}
-
-void insertTrans(char * cosas){
-	fprintf(file, " %s ", cosas);
 }
 
 %}
@@ -118,18 +125,18 @@ synonyms: synonyms SYNONYM {inserteverything($2);}
 
 translations: totrans | tsense | tword {};
 
-totrans: TOTRANS {insertTrans($1);}
-     | tsense TOTRANS {insertTrans($2);}
+totrans: TOTRANS {insertsenses($1);}
+     | tsense TOTRANS {insertsenses($2);}
 
-tsense: tword TSENSE {insertTrans($2);}
-      | tsense TSENSE {insertTrans($2);}
-      | totrans TSENSE {insertTrans($2);}
-      | tword TOTRANS {insertTrans($2);}
-      | TSENSE {insertTrans($1);}
+tsense: tword TSENSE {insertsenses($2);}
+      | tsense TSENSE {insertsenses($2);}
+      | totrans TSENSE {insertsenses($2);}
+      | tword TOTRANS {insertsenses($2);}
+      | TSENSE {insertsenses($1);}
 
-tword: tsense TRANS {insertTrans($2);}
-     | tword TRANS {insertTrans($2);}
-     | TRANS {insertTrans($1);}
+tword: tsense TRANS {inserteverything($2);}
+     | tword TRANS {inserteverything($2);}
+     | TRANS {inserteverything($1);}
 
 synerror: NOTFOUND {yyerror("The word isn't in the dictionary\n");}
 
