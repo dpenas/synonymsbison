@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "menu_entrada.c"
 #include "createhtml.h"
+#define input_html "htmlresult"
 
 char everything[100][100];
 int number_everything = 0;
@@ -31,7 +32,8 @@ void download_url(char* url){
 	char* url_final = (char*) malloc(totallength+1);
 	url_final = strcpy(url_final, "wget ");
 	strcat(url_final, url);
-	strcat(url_final, " -O htmlresult");
+	strcat(url_final, " -O ");
+	strcat(url_final, input_html);
 	printf("%s\n", url_final);
 	system(url_final);					
 }
@@ -168,13 +170,14 @@ synerror: NOTFOUND {yyerror("The word isn't in the dictionary\n");}
 
 %%
 int main(){
-
+	FILE * archivo;
 	struct query * q = get_query();	
 	char* url;
 	url = create_url(q);
 	download_url(url);
-	
 	file = fopen("salida.html","w");
+	archivo = fopen(input_html,"r");
+	lecturaFichero(archivo);
 	yyparse();
 	createhtml(file);	
 	printsynonyms();

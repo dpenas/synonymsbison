@@ -62,3 +62,9 @@ noentryfound "noEntryFound"
 . {}
 \n {}
 %%
+
+void lecturaFichero (FILE * fichero){
+	YY_BUFFER_STATE bf;
+	bf = yy_create_buffer(fichero, YY_BUF_SIZE);
+	yy_switch_to_buffer (bf);
+}
