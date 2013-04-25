@@ -36,8 +36,11 @@ void print_langs(){
 }
 
 int get_opcion(int * type){
-	printf("Opción: ");
-	scanf("%d",type);	
+	int err = 0;
+	printf("> Opción: ");
+	err = scanf("%d",type);
+	getchar();
+	return (err==0);
 }
 
 int what_2_do(){
@@ -45,8 +48,8 @@ int what_2_do(){
 	int check = (type < 0) | (type > num_types);
 	while(check){
 		print_options();
-		get_opcion(&type);
-		check = (type < 0) | (type >= num_types); // Checks if type is wrong
+		int err_op = get_opcion(&type);
+		check = err_op | (type < 0) | (type >= num_types); // Checks if type is wrong
 		if(check)
 			printf("\n** Error: Opción no válida. Selecciona de nuevo, por favor. **\n");
 	}
