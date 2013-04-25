@@ -156,6 +156,7 @@ int main(){
 	struct query * q = get_query();
 
 	print_query(q);
-*/
+
 //	free (q);
 }
+*/

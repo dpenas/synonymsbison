@@ -53,9 +53,6 @@ void inserteverything(char* something){
 	number_everything++;
 }
 
-void beginprinthtml(FILE* file){
-	createhtml(file);	
-}
 
 void printsensehtml (FILE* file, char* sense, int flag){
 	char* createhtml1;
@@ -179,6 +176,6 @@ int main(){
 	
 	file = fopen("salida.html","w");
 	yyparse();
-	beginprinthtml(file);
+	createhtml(file);	
 	printsynonyms();
 }
