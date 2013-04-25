@@ -38,7 +38,6 @@ noentryfound "noEntryFound"
 <_wanted>{title}{something}">" {BEGIN(_syn);}
 
 {thesaurus} {BEGIN(_wanted);}
-. {printf("");}
 
 
 
@@ -60,5 +59,6 @@ noentryfound "noEntryFound"
 {trans} {BEGIN(_toTranslate);}
 
 {noentryfound} {yylval.string = yytext; return NOTFOUND;}
-
+. {}
+\n {}
 %%
