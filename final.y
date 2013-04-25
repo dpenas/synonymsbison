@@ -101,6 +101,32 @@ void printsynonyms(){
 	}
 }
 
+void printhtmltrans(char* word, int flag){
+	char* createhtml;
+	char* createhtml1;
+	/*
+	* 0: It's a word
+	* 1: It's a sense
+	* 2: It's a ToTrans
+	*/
+	if(flag == 0){
+		createhtml = "<tr class= 'even'><td class='ToWrd'>";
+		createhtml1 = "</td></tr>";				
+	}
+	if(flag == 1){
+		createhtml = "<tr class= 'odd'><td> <span class='To2'>";
+		createhtml1 = "</span></td></tr>";
+	}
+	else{
+		createhtml = "<tr class= 'even'><td><span class='FRW2'>";
+		createhtml1 = "</span></td></tr>";
+	}
+
+	fprintf(file, "%s", createhtml);
+	fprintf(file, "%s", word);
+	fprintf(file, "%s", createhtml1);
+}
+
 %}
 
 
@@ -128,18 +154,18 @@ synonyms: synonyms SYNONYM {inserteverything($2);}
 
 translations: totrans | tsense | tword {};
 
-totrans: TOTRANS {insertsenses($1);}
-     | tsense TOTRANS {insertsenses($2);}
+totrans: TOTRANS {printhtmltrans($1,2);}
+| tsense TOTRANS {printhtmltrans($2,2);}
 
-tsense: tword TSENSE {insertsenses($2);}
-      | tsense TSENSE {insertsenses($2);}
-      | totrans TSENSE {insertsenses($2);}
-      | tword TOTRANS {insertsenses($2);}
-      | TSENSE {insertsenses($1);}
+tsense: tword TSENSE {printhtmltrans($2,1);}
+      | tsense TSENSE {printhtmltrans($2,1);}
+      | totrans TSENSE {printhtmltrans($2,1);}
+      | tword TOTRANS {printhtmltrans($2,2);}
+      | TSENSE {printhtmltrans($1,1);}
 
-tword: tsense TRANS {inserteverything($2);}
-     | tword TRANS {inserteverything($2);}
-     | TRANS {inserteverything($1);}
+tword: tsense TRANS {printhtmltrans($2,0);}
+     | tword TRANS {printhtmltrans($2,0);}
+     | TRANS {printhtmltrans($1,0);}
 
 synerror: NOTFOUND {yyerror("The word isn't in the dictionary\n");}
 
