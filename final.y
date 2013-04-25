@@ -4,6 +4,7 @@
 #include "menu_entrada.c"
 #include "createhtml.h"
 #define input_html "htmlresult"
+#define output_html "salida.html"
 
 char everything[100][100];
 int number_everything = 0;
@@ -20,7 +21,10 @@ char* create_url(struct query * q){
 	char *final = (char*) malloc(totallength+1);
 	final = strcpy(final, wordrefurl);
 	strcat(final, apikey);
-	strcat(final, name);
+	if(q->type == translation)
+		strcat(final, q->trans);
+	else
+		strcat(final, name);
 	strcat(final, "/");
 	strcat(final, word);
 	printf("%s\n", final);
@@ -175,7 +179,7 @@ int main(){
 	char* url;
 	url = create_url(q);
 	download_url(url);
-	file = fopen("salida.html","w");
+	file = fopen(output_html,"w");
 	archivo = fopen(input_html,"r");
 	lecturaFichero(archivo);
 	yyparse();
