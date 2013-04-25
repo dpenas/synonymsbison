@@ -1,0 +1,5 @@
+Errores:
+	· Si el usuario solicita traducir de un idioma al mismo idioma.
+	· Si la palabra introducida no existe.
+
+	· Buscamos una palabra en un idioma e indicamos un idioma diferente
