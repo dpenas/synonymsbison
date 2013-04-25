@@ -1,6 +1,7 @@
 %{
 #include <string.h>
 #include <stdlib.h>
+#include "menu_entrada.c"
 #include "createhtml.h"
 
 char everything[100][100];
@@ -9,15 +10,17 @@ int senses[100];
 int number_senses = 0;
 FILE *file;
 
-char* create_url(char* word){
+char* create_url(struct query * q){
 	char* wordrefurl = "http://api.wordreference.com/";
 	char* apikey = "de96c/";
-	char* type = "thesaurus/";
-	size_t totallength = strlen(wordrefurl) + strlen(apikey) + strlen(word) + strlen(type);
+	char* name = q->name;
+	char* word = q->word;
+	size_t totallength = strlen(wordrefurl) + strlen(apikey) + strlen(name) + strlen(word);
 	char *final = (char*) malloc(totallength+1);
 	final = strcpy(final, wordrefurl);
 	strcat(final, apikey);
-	strcat(final, type);
+	strcat(final, name);
+	strcat(final, "/");
 	strcat(final, word);
 	printf("%s\n", final);
 	return final;
@@ -142,10 +145,12 @@ synerror: NOTFOUND {yyerror("The word isn't in the dictionary\n");}
 
 %%
 int main(){
-	//char* url;
-	//url = create_url("house");
-	//download_url(url);
-	//printf("Descargado HTML RESULT\n");
+
+	struct query * q = get_query();	
+	char* url;
+	url = create_url(q);
+	download_url(url);
+	
 	file = fopen("salida.html","w");
 	yyparse();
 	beginprinthtml(file);

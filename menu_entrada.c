@@ -2,18 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "languages.h"
+#include "query_types.h"
 
 #define error -1
-#define num_types 2 // Total number of query types (without error) -> afects what_2_do
-#define thesaurus 0
-#define translation 1
 #define max_len_word 50
 
 
 struct query {
 	int type;
+	char * name; // name of the query
 	char * word;
-	char * trans; //languages for translation, Wordreference formatted
+	char * trans; // languages for translation, Wordreference formatted
 };
 
 
@@ -44,6 +43,7 @@ int get_opcion(int * type){
 }
 
 int what_2_do(){
+	int err_op = 0;
 	int type = -1;
 	int check = (type < 0) | (type > num_types);
 	while(check){
@@ -65,12 +65,13 @@ char * get_word(){
 }
 
 int get_lang(){
+	int err_op = 0;
 	int lang = -1;
 	int check = (lang < 0) | (lang > num_langs);
 	while(check){
 		print_langs();
 		get_opcion(&lang);
-		check = (lang < 0) | (lang >= num_langs); // Checks if lang is wrong
+		check = err_op | (lang < 0) | (lang >= num_langs); // Checks if lang is wrong
 		if(check)
 			printf("\n** Error: Opción no válida. Selecciona de nuevo, por favor. **\n");
 	}	
@@ -89,13 +90,20 @@ char * format_trans(lang1, lang2){
 	return trans;
 }
 
+char * get_query_name( struct query * q ){
+	q->name = qt[q->type].word;
+	return q->name;
+}
+
 void get_thesaurus(struct query * q){
+	get_query_name(q);
 	printf("Introduce la palabra para la que buscar sinónimos:\n");	
 	char * w = get_word();
 	q->word = w;
 }
 
 void get_translation(struct query * q){
+	get_query_name(q);
 	printf("Introduce la palabra a traducir\n");
 	char * w = get_word();
 	q->word = w;
@@ -138,14 +146,16 @@ struct query * get_query(){
 void print_query(struct query * q){
 	printf("Query:\n");
 	printf("- Type: %d\n", q->type);
+	printf("- Name: %s\n", q->name);
 	printf("- Word: %s\n", q->word);
 	printf("- Trans: %s\n", q-> trans);
 }
 
+/*
 int main(){
 	struct query * q = get_query();
 
 	print_query(q);
-
+*/
 //	free (q);
 }
