@@ -6,9 +6,9 @@
 #define input_html "htmlresult"
 #define output_html "salida.html"
 
-char everything[100][100];
+char everything[100000][100000];
 int number_everything = 0;
-int senses[100];
+int senses[100000];
 int number_senses = 0;
 FILE *file;
 
@@ -60,16 +60,13 @@ void inserteverything(char* something){
 }
 
 
-void printsensehtml (FILE* file, char* sense, int flag){
+void printsensehtml (FILE* file, char* sense){
 	char* createhtml1;
 	char* createhtml2;
-	if (flag == 0){
 		createhtml1 = "<tr class='odd'><td><span class='FrW2'>";
 		createhtml2 = "</span></td></tr>";
-	}else{
-		createhtml1 = "<tr class='even'><td><span class='To2'>";
-		createhtml2 = "</span></td></tr>";
-	}
+//		createhtml1 = "<tr class='even'><td><span class='To2'>";
+//		createhtml2 = "</span></td></tr>";
 	fprintf(file, "%s", createhtml1);
 	fprintf(file, "%s", sense);
 	fprintf(file, "%s", createhtml2);
@@ -85,14 +82,9 @@ void printwordhtml (FILE* file, char* word){
 
 void printsynonyms(){
 	int i, j, count;
-	int tab = 0;
 	count = 0;
 	for (i = 0; i < number_senses; i++){
-		tab = 0;
-		if (senses[i+1] == 0){
-			tab=1;	
-		}
-		printsensehtml(file, everything[count], tab);
+		printsensehtml(file, everything[count]);
 		count++;
 		for (j = count; j < senses[i+1]; j++){
 			printwordhtml(file, everything[j]);
@@ -113,7 +105,7 @@ void printhtmltrans(char* word, int flag){
 	* 2: It's a ToTrans
 	*/
 	if(flag == 0){
-		createhtml = "<tr class= 'even'><td class='ToWrd'>";
+		createhtml = "<tr class= 'odd'><td class='ToWrd'>";
 		createhtml1 = "</td></tr>";				
 	}
 	if(flag == 1){
@@ -157,18 +149,18 @@ synonyms: synonyms SYNONYM {inserteverything($2);}
 
 translations: totrans | tsense | tword {};
 
-totrans: TOTRANS {printhtmltrans($1,2);}
-| tsense TOTRANS {printhtmltrans($2,2);}
+totrans: TOTRANS {printf("TOTRANS=%s\n",$1);/*printhtmltrans($1,2);*/}
+| tsense TOTRANS {printf("TOTRANS=%s\n",$2);/*printhtmltrans($2,2);*/}
 
-tsense: tword TSENSE {printhtmltrans($2,1);}
-      | tsense TSENSE {printhtmltrans($2,1);}
-      | totrans TSENSE {printhtmltrans($2,1);}
-      | tword TOTRANS {printhtmltrans($2,2);}
-      | TSENSE {printhtmltrans($1,1);}
+tsense: tword TSENSE {printf("Sentido=%s:",$2);insertsenses($2);}
+      | tsense TSENSE {printf("Sentido=%s:",$2);insertsenses($2);}
+      | totrans TSENSE {printf("Sentido=%s:",$2);insertsenses($2);}
+      | tword TOTRANS {printf("TOTRANS=%s\n",$2);/*printhtmltrans($2,2);*/}
+      | TSENSE {printf("Sentido=%s:",$1);insertsenses($1);}
 
-tword: tsense TRANS {printhtmltrans($2,0);}
-     | tword TRANS {printhtmltrans($2,0);}
-     | TRANS {printhtmltrans($1,0);}
+tword: tsense TRANS {printf("Trans=%s\n",$2);inserteverything($2);}
+     | tword TRANS {printf("Trans=%s\n",$2);inserteverything($2);}
+     | TRANS {printf("Trans=%s\n",$1);inserteverything($1);}
 
 synerror: NOTFOUND {yyerror("The word isn't in the dictionary\n");}
 
@@ -179,10 +171,11 @@ int main(){
 	char* url;
 	url = create_url(q);
 	download_url(url);
-	file = fopen(output_html,"w");
+	file = fopen(output_html,"wr");
 	archivo = fopen(input_html,"r");
 	lecturaFichero(archivo);
 	yyparse();
-	createhtml(file);	
+	createhtml(file);
 	printsynonyms();
+
 }
