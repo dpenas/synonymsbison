@@ -1,6 +1,6 @@
 CC = gcc -g -O0
 
-INPUT = final
+INPUT = synonyms
 FLEX = lex.yy.c
 BISON = y.tab.c
 
